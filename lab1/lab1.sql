@@ -48,13 +48,13 @@ Part C
   2? SELECT COMMENTS FROM ALL_TAB_COMMENTS WHERE COMMENTS <> NULL;
   3. ANALYZE TABLE COUNTRY COMPUTE STATISTICS;
   4. SELECT VIEW_NAME, TEXT_VC FROM USER_VIEWS;
-  5/? SELECT  FROM USER_TAB_HISTOGRAMS WHERE TABLE_NAME = 'COUNTRY';
+  5. SELECT NUM_ROWS, BLOCKS, AVG_ROW_LEN, LAST_ANALYZED, DEPENDENCIES  FROM USER_TABLES;
   6? SELECT INDEX_NAME, INDEX_TYPE FROM USER_INDEXES;
-  7 
+  7. SELECT NUM_DISTINCT, NUM_NULLS, DENSITY, LOW_VALUE, HIGH_VALUE FROM USER_TAB_COLUMNS WHERE TABLE_NAME = 'COUNTRY'; 
   8. SELECT INDEX_NAME, TABLE_NAME, COLUMN_NAME FROM USER_IND_COLUMNS;
-  9
+  9. SELECT INDEX_NAME FROM USER_INDEXES;
   10. SELECT TABLE_NAME, TABLE_TYPE FROM USER_CATALOG;
-  11. -- The coutry.sql script does not have any statements to create an index. Oracle created an index on column NAME because NAME is a primary key for the table country. The system also created an index on the column YEAR beacuse YEAR is also part of the primary key for the table COUNRTY;
+  11. -- The coutry.sql script does not have any statements to create an index. Oracle created an index on column NAME because NAME is a primary key for the table country. The system also created an index on the column YEAR beacuse YEAR is also part of the primary key for the table COUNTRY;
   12. SELECT A.LEAF_BLOCKS, A.INDEX_NAME, A.INDEX_TYPE, A.CLUSTERING_FACTOR, B.COLUMN_NAME  FROM USER_INDEXES A, USER_IND_COLUMNS B WHERE A.INDEX_NAME = B.INDEX_NAME;  
   13. SELECT VIEW_NAME, TEXT FROM USER_VIEWS;
 
@@ -67,6 +67,10 @@ Part C
 3)
   1
 
+
+
+Write an SQL expression to determine the number of rows, blocks, average row length, date and dependencies
+ when it was last analyzed, for each user table.
 
 FOR 5:1.
   CREATE INDEX POPULATION_RANGE ON COUNTRY (AREA)
