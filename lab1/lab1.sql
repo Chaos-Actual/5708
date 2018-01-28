@@ -24,7 +24,7 @@
 --3)
  -- This takes a little while to figure out what it is asking. It would be more clear if find names of regions and the area of these regions with.. bc name is a field in the table
   --1.
-      SELECT A.REGION , SUM(A.AREA) AS TOTAL_AREA FROM COUNTRY A WHERE A.YEAR = '2002' GROUP BY A.REGION HAVING SUM(A.AREA) > (SELECT SUM(B.AREA) FROM COUNTRY B WHERE B.YEAR = '2002' AND B.REGION = 'Middle East');   1
+      SELECT A.REGION , SUM(A.AREA) AS TOTAL_AREA FROM COUNTRY A WHERE A.YEAR = '2002' GROUP BY A.REGION HAVING SUM(A.AREA) > (SELECT SUM(B.AREA) FROM COUNTRY B WHERE B.YEAR = '2002' AND B.REGION = 'Middle East');
   --2..
       SELECT A.REGION, SUM(A.POPULATION) AS REGION_POPULATION FROM COUNTRY A GROUP BY A.REGION ORDER BY SUM(A.POPULATION) ASC FETCH FIRST 1 ROWS ONLY ;
   --3.
@@ -39,7 +39,7 @@
   --2.
       UPDATE COUNTRY SET AREA = 35000 WHERE NAME = 'Belgium';
   --3.
-      UPDATE COUNTRY SET AREA = (AREA * --1.3) WHERE NAME = 'Peru';
+      UPDATE COUNTRY SET AREA = (AREA * 1.3) WHERE NAME = 'Peru';
 
 -- CAN WE HAVE MORE THAN ONE STATEMENT?
   --4..
@@ -63,7 +63,8 @@
 --Part C
 --1)
   --1.
-      SELECT TABLE_NAME , TABLESPACE_NAME, STATUS FROM USER_TABLES; --TABLES SPACES CAN HAVE MORE THAN ONE TABLE BUT A TABLE CAN ONLY PE A PART OF ONE TABLESAPCEA.
+      SELECT TABLE_NAME , TABLESPACE_NAME, STATUS FROM USER_TABLES;
+--TABLES SPACES CAN HAVE MORE THAN ONE TABLE BUT A TABLE CAN ONLY PE A PART OF ONE TABLESAPCEA.
   -- THIS DOES NOT RETURN ANY VALUES.
   --2.
       SELECT COMMENTS FROM ALL_TAB_COMMENTS WHERE COMMENTS IS NOT NULL;
@@ -92,9 +93,10 @@
 --2)
   --1.
       ALTER TABLE COUNTRY MODIFY (AREA NOT NULL);
-  -- This constraint will not work if there is data in the database that already violates the constraint
+  -- This constraint will not work if there is data in the database that already violates the constraint.
   --2.
       ALTER TABLE COUNTRY MODIFY (AREA CHECK (AREA > 1000));
+  -- This constraint will not work if there is data in the database that already violates the constraint.
   --3.
       SELECT A.CONSTRAINT_NAME, A.CONSTRAINT_TYPE, B.COLUMN_NAME FROM ALL_CONSTRAINTS A, ALL_CONS_COLUMNS B WHERE A.TABLE_NAME = B.TABLE_NAME AND A.TABLE_NAME = 'COUNTRY' AND A.CONSTRAINT_NAME = B.CONSTRAINT_NAME AND A.OWNER = B.OWNER;
 
