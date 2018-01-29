@@ -47,8 +47,8 @@
 
 --5)
   --1.
-      CREATE INDEX POPULATION_RANGE ON COUNTRY (POPULATION);
--- THIS IS HAVE AN INDEX_TYPE OF NORMAL WHICH IS BY DEFAULT A B+ TREE IN ORACLE.
+      CREATE INDEX POPULATION_RANGE ON COUNTRY (AREA);
+-- The index that I would like to use is a B+ tree. The index that has been created on area has an INDEX_TYPE of NORMAL which is by default is a B+ Tree.
   --2.
      CREATE INDEX POP_INDEX ON COUNTRY (POPULATION);
   --3.
@@ -59,7 +59,7 @@
 --1)
   --1.
       SELECT TABLE_NAME , TABLESPACE_NAME, STATUS FROM USER_TABLES FETCH FIRST 10 ROWS ONLY;
---TABLES SPACES CAN HAVE MORE THAN ONE TABLE BUT A TABLE CAN ONLY PE A PART OF ONE TABLESPACE.
+-- Table spaces can have more than one table but a table can only be a part of one tablespace.
   --2.
       SELECT COMMENTS FROM ALL_TAB_COMMENTS WHERE COMMENTS IS NOT NULL FETCH FIRST 10 ROWS ONLY;
   --3.
