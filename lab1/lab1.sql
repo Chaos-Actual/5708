@@ -1,3 +1,19 @@
+
+/**************************
+*     Lab 1               *
+*     Mark McGuire        *
+*     X500: mcgu0156      *
+**************************/
+
+
+
+/* Part A */
+/*   The script works correctly. The examples and instructions are correct. */
+
+
+/* Part B */
+
+/* This section was straightforward and had no errors. */ 
 --1)
   --1.
       SELECT UNIQUE NAME FROM COUNTRY WHERE NAME LIKE 'C%' OR NAME LIKE 'D%' FETCH FIRST 10 ROWS ONLY;
@@ -10,6 +26,8 @@
   --5.
       SELECT NAME FROM COUNTRY WHERE REGION = 'Europe' AND AREA > 100000 AND YEAR = '2005' ORDER BY GDP DESC FETCH FIRST 10 ROWS ONLY;
 
+
+/* The second question could be worded better. It should read “For each year” not “For all the year”.*/
 --2)
   --1.
       SELECT COUNT (NAME) FROM COUNTRY WHERE GDP > .15 AND YEAR = '2005' FETCH FIRST 10 ROWS ONLY;
@@ -20,6 +38,8 @@
   --4.
       SELECT YEAR , SUM ((POPULATION /AREA )) AS DENSITY FROM COUNTRY WHERE REGION = 'Europe' GROUP BY YEAR  ORDER BY YEAR DESC FETCH FIRST 10 ROWS ONLY;
 
+
+/* The first question was slightly confusing as to what approve was needed to solve. It would be helpful to have a hint to use a group by clause. */
 --3)
   --1.
       SELECT A.REGION , SUM(A.AREA) AS TOTAL_AREA FROM COUNTRY A WHERE A.YEAR = '2002' GROUP BY A.REGION HAVING SUM(A.AREA) > (SELECT SUM(B.AREA) FROM COUNTRY B WHERE B.YEAR = '2002' AND B.REGION = 'Middle East') FETCH FIRST 10 ROWS ONLY;
@@ -30,6 +50,8 @@
   --4.
       SELECT A.NAME FROM COUNTRY A WHERE A.YEAR ='2008' AND A.AREA NOT IN (SELECT B.AREA FROM COUNTRY B , COUNTRY C WHERE B.YEAR = C.YEAR AND B.YEAR = '2008' AND B.AREA > C.AREA) FETCH FIRST 10 ROWS ONLY;
 
+
+/* The fourth question needs to have a statement that says it needs two statements. One statement to update the China records and another to delete the Hong Kong records.  */
 --4)
   --1.
       DELETE FROM COUNTRY WHERE GDP = 0;
@@ -44,6 +66,8 @@
     WHERE A.NAME = 'China' AND YEAR > 1997;
     DELETE FROM COUNTRY WHERE NAME = 'Hong Kong' AND YEAR > 1997;
 
+/* The first question should read “Which kind of index would you like to use?”. 
+ * This question has a part that requires a written statement. It is unclear how these answers should be turned in.  */
 --5)
   --1.
       CREATE INDEX POPULATION_RANGE ON COUNTRY (AREA);
@@ -53,7 +77,9 @@
   --3.
      CREATE VIEW COUNTRY_VIEW AS SELECT REGION, POPULATION, AREA FROM COUNTRY;
 
---Part C
+/* Part C */
+/* It is unclear how the written answers should be turned in. 
+ * Should we turn it in in a SQL file or should we just write the statements in Word? */
 --1)
   --1.
       SELECT TABLE_NAME , TABLESPACE_NAME, STATUS FROM USER_TABLES FETCH FIRST 10 ROWS ONLY;
@@ -82,6 +108,9 @@
   --13.
       SELECT VIEW_NAME, TEXT FROM USER_VIEWS FETCH FIRST 10 ROWS ONLY;
 
+/* The first and second questions that alter tables will not execute. 
+ * If there are fields that violate the constraints then the statements will not execute.
+ * The Country table currently has values that violate the constraints therefore these two statement error out. */
 --2)
   --1.
       ALTER TABLE COUNTRY MODIFY (AREA NOT NULL);
