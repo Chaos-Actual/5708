@@ -47,7 +47,7 @@
 --5)
   --1.
       CREATE INDEX POPULATION_RANGE ON COUNTRY (AREA);
--- The index that I would like to use is a B+ tree. The index that has been created on area has an INDEX_TYPE of NORMAL which is by default is a B+ Tree.
+-- Written answer: The index that I would like to use is a B+ tree. The index that has been created on area has an INDEX_TYPE of NORMAL which is by default is a B+ Tree.
   --2.
      CREATE INDEX POP_INDEX ON COUNTRY (POPULATION);
   --3.
@@ -57,7 +57,7 @@
 --1)
   --1.
       SELECT TABLE_NAME , TABLESPACE_NAME, STATUS FROM USER_TABLES FETCH FIRST 10 ROWS ONLY;
--- Table spaces can have more than one table but a table can only be a part of one tablespace.
+--Written answer: Table spaces can have more than one table but a table can only be a part of one tablespace.
   --2.
       SELECT COMMENTS FROM ALL_TAB_COMMENTS WHERE COMMENTS IS NOT NULL FETCH FIRST 10 ROWS ONLY;
   --3.
@@ -76,7 +76,7 @@
       SELECT INDEX_NAME FROM USER_INDEXES FETCH FIRST 10 ROWS ONLY;
   --10.
       SELECT TABLE_NAME, TABLE_TYPE FROM USER_CATALOG FETCH FIRST 10 ROWS ONLY;
-  --11. -- The coutry.sql script does not have any statements to create an index. Oracle created an index on column NAME because NAME is a primary key for the table country. The system also created an index on the column YEAR beacuse YEAR is also part of the primary key for the table COUNTRY;
+  --11. Written Answer: The coutry.sql script does not have any statements to create an index. Oracle created an index on column NAME because NAME is a primary key for the table country. The system also created an index on the column YEAR beacuse YEAR is also part of the primary key for the table COUNTRY;
   --12.
       SELECT A.LEAF_BLOCKS, A.INDEX_NAME, A.INDEX_TYPE, A.CLUSTERING_FACTOR, B.COLUMN_NAME  FROM USER_INDEXES A, USER_IND_COLUMNS B WHERE A.INDEX_NAME = B.INDEX_NAME FETCH FIRST 10 ROWS ONLY;
   --13.
