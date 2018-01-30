@@ -1,14 +1,17 @@
 
-/**************************
-*     Lab 1               *
-*     Mark McGuire        *
-*     X500: mcgu0156      *
-**************************/
+/******************************
+*     Lab 1                   *
+*     Group:  G8              *
+*     Member: Mark McGuire    *
+*     X500:   mcgu0156        *
+*     Member: Yadu Kiran013   *
+*     X500:   Kiran03         *
+******************************/
 
 
 
 /* Part A */
-/*   The script works correctly. The examples and instructions are correct. */
+/* The script works correctly. The examples and instructions are correct. */
 
 
 /* Part B */
