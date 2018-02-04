@@ -16,7 +16,7 @@
 
 /* Part B */
 
-/* This section was straightforward and had no errors. */ 
+/* This section was straightforward and had no errors. */
 --1)
   --1.
       SELECT UNIQUE NAME FROM COUNTRY WHERE NAME LIKE 'C%' OR NAME LIKE 'D%' FETCH FIRST 10 ROWS ONLY;
@@ -63,13 +63,13 @@
   --3.
       UPDATE COUNTRY SET AREA = (AREA * 1.3) WHERE NAME = 'Peru';
   --4..
-    UPDATE COUNTRY A SET  A.POPULATION = (A.POPULATION + (SELECT B.POPULATION FROM COUNTRY B WHERE B.NAME = 'Hong Kong' AND A.YEAR = B.YEAR)),
-    A.AREA = (A.AREA + (SELECT B.AREA FROM COUNTRY B WHERE B.NAME = 'Hong Kong' AND A.YEAR = B.YEAR )),
-    A.GDP = (A.GDP + (SELECT B.GDP FROM COUNTRY B WHERE B.NAME = 'Hong Kong' AND A.YEAR = B.YEAR))
-    WHERE A.NAME = 'China' AND YEAR > 1997;
-    DELETE FROM COUNTRY WHERE NAME = 'Hong Kong' AND YEAR > 1997;
+      UPDATE COUNTRY A SET  A.POPULATION = (A.POPULATION + (SELECT B.POPULATION FROM COUNTRY B WHERE B.NAME = 'Hong Kong' AND A.YEAR = B.YEAR)),
+      A.AREA = (A.AREA + (SELECT B.AREA FROM COUNTRY B WHERE B.NAME = 'Hong Kong' AND A.YEAR = B.YEAR )),
+      A.GDP = (A.GDP + (SELECT B.GDP FROM COUNTRY B WHERE B.NAME = 'Hong Kong' AND A.YEAR = B.YEAR))
+      WHERE A.NAME = 'China' AND YEAR > 1997;
+      DELETE FROM COUNTRY WHERE NAME = 'Hong Kong' AND YEAR > 1997;
 
-/* The first question should read “Which kind of index would you like to use?”. 
+/* The first question should read “Which kind of index would you like to use?”.
  * This question has a part that requires a written statement. It is unclear how these answers should be turned in.  */
 --5)
   --1.
@@ -81,7 +81,7 @@
      CREATE VIEW COUNTRY_VIEW AS SELECT REGION, POPULATION, AREA FROM COUNTRY;
 
 /* Part C */
-/* It is unclear how the written answers should be turned in. 
+/* It is unclear how the written answers should be turned in.
  * Should we turn it in in a SQL file or should we just write the statements in Word? */
 --1)
   --1.
@@ -111,14 +111,14 @@
   --13.
       SELECT VIEW_NAME, TEXT FROM USER_VIEWS FETCH FIRST 10 ROWS ONLY;
 
-/* The first and second questions that alter tables will not execute. 
+/* The first and second questions that alter tables will not execute.
  * If there are fields that violate the constraints then the statements will not execute.
  * The Country table currently has values that violate the constraints therefore these two statement error out. */
 --2)
   --1.
-      ALTER TABLE COUNTRY MODIFY (AREA NOT NULL);
+      ALTER TABLE COUNTRY MODIFY AREA NOT NULL ENABLE NOVALIDATE ;
   --2.
-      ALTER TABLE COUNTRY MODIFY (AREA CHECK (AREA > 1000));
+      ALTER TABLE COUNTRY ADD CONSTRAINT CHK_AREA1 CHECK (AREA > 1000)  NOVALIDATE;
   --3.
       SELECT A.CONSTRAINT_NAME, A.CONSTRAINT_TYPE, B.COLUMN_NAME FROM ALL_CONSTRAINTS A, ALL_CONS_COLUMNS B WHERE A.TABLE_NAME = B.TABLE_NAME AND A.TABLE_NAME = 'COUNTRY' AND A.CONSTRAINT_NAME = B.CONSTRAINT_NAME AND A.OWNER = B.OWNER FETCH FIRST 10 ROWS ONLY;
 
