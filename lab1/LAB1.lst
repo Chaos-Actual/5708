@@ -1,0 +1,580 @@
+SQL> @/home/mcgu0156/Desktop/5708/5708/lab1/lab1.sql
+
+NAME                                                                            
+--------------------------------------------------                              
+Croatia                                                                         
+Czech Republic                                                                  
+Cameroon                                                                        
+Cape Verde                                                                      
+Chad                                                                            
+China                                                                           
+Cuba                                                                            
+Dominica                                                                        
+Comoros                                                                         
+Djibouti                                                                        
+
+10 rows selected.
+
+
+NAME                                                                            
+--------------------------------------------------                              
+Paraguay                                                                        
+Qatar                                                                           
+
+
+REGION                                                                          
+------------------------------------------------------------                    
+Europe                                                                          
+Commonwealth of Independent States - European States                            
+Africa                                                                          
+Southeast Asia                                                                  
+North America                                                                   
+Ethnic Groups in Eastern Europe, Europe                                         
+Middle East                                                                     
+Arctic Region                                                                   
+Commonwealth of Independent States - Central Asian States                       
+Asia                                                                            
+
+10 rows selected.
+
+
+NAME                                                                            
+--------------------------------------------------                              
+Andorra                                                                         
+Anguilla                                                                        
+Aruba                                                                           
+American Samoa                                                                  
+Barbados                                                                        
+Belize                                                                          
+Bermuda                                                                         
+Bhutan                                                                          
+Djibouti                                                                        
+Cocos (Keeling) Islands                                                         
+
+10 rows selected.
+
+
+NAME                                                                            
+--------------------------------------------------                              
+Greece                                                                          
+Sweden                                                                          
+Norway                                                                          
+United Kingdom                                                                  
+Finland                                                                         
+Spain                                                                           
+France                                                                          
+Germany                                                                         
+Italy                                                                           
+
+9 rows selected.
+
+
+COUNT(NAME)                                                                     
+-----------                                                                     
+          5                                                                     
+
+
+YEAR NUMBER_COUNTRIES TOTAL_POPULATION AVE_POPULATION  TOTAL_GDP                
+---- ---------------- ---------------- -------------- ----------                
+2011               26        419317427     16127593.3       .271                
+2010               26        415859693     15994603.6     -1.056                
+2009               26        407430366     15670398.7       .284                
+2008               26        406621166     15639275.6      1.054                
+2007               26        406277302     15626050.1      1.166                
+2006               26        402965722     15498681.6       .982                
+2005               26        402219663       15469987       .952                
+2004               26        401406133     15438697.4       .704                
+2003               26        399940608     15382331.1       .778                
+2002               26        399406214     15361777.5       .704                
+
+10 rows selected.
+
+
+REGION                                                                          
+------------------------------------------------------------                    
+Europe                                                                          
+Africa                                                                          
+Southeast Asia                                                                  
+Ethnic Groups in Eastern Europe, Europe                                         
+Middle East                                                                     
+Commonwealth of Independent States - Central Asian States                       
+Asia                                                                            
+Central America and the Caribbean                                               
+South America                                                                   
+
+9 rows selected.
+
+
+YEAR    DENSITY                                                                 
+---- ----------                                                                 
+2011  35519.662                                                                 
+2010  35537.923                                                                 
+2009 37860.5759                                                                 
+2008 37499.7172                                                                 
+2007 37499.0886                                                                 
+2006  37343.902                                                                 
+2005 37186.7472                                                                 
+2004 37023.8467                                                                 
+2003 36866.3796                                                                 
+2002 36696.8092                                                                 
+
+10 rows selected.
+
+
+REGION                                                       TOTAL_AREA         
+------------------------------------------------------------ ----------         
+Africa                                                         22601255         
+North America                                                  21321350         
+Asia                                                           15111536         
+Oceania                                                         8503787         
+South America                                                  16576425         
+
+
+REGION                                                       REGION_POPULATION  
+------------------------------------------------------------ -----------------  
+Arctic Region                                                          7746827  
+
+
+NAME                                                                            
+--------------------------------------------------                              
+France                                                                          
+Germany                                                                         
+Italy                                                                           
+United Kingdom                                                                  
+
+
+NAME                                                                            
+--------------------------------------------------                              
+Chad                                                                            
+Mongolia                                                                        
+Monaco                                                                          
+Mali                                                                            
+Niger                                                                           
+
+
+41 rows deleted.
+
+
+23 rows updated.
+
+
+23 rows updated.
+
+
+14 rows updated.
+
+
+13 rows deleted.
+
+
+Index created.
+
+
+Index created.
+
+
+View created.
+
+
+TABLE_NAME                                                                      
+--------------------------------------------------------------------------------
+TABLESPACE_NAME                STATUS                                           
+------------------------------ --------                                         
+COUNTRY                                                                         
+USERS                          VALID                                            
+                                                                                
+
+
+COMMENTS                                                                        
+--------------------------------------------------------------------------------
+Description table for privilege type codes.  Maps privilege  type numbers to typ
+e names                                                                         
+                                                                                
+Description table for privilege (auditing option) type codes.  Maps privilege (a
+uditing option) type numbers to type names                                      
+                                                                                
+Description table for user privilege (auditing option) type codes.  Maps privile
+ge (auditing option) type numbers to type names                                 
+                                                                                
+Description table for auditing option type codes.  Maps auditing option type num
+bers to type names                                                              
+
+COMMENTS                                                                        
+--------------------------------------------------------------------------------
+                                                                                
+Description of all XML Schemas that user has privilege to reference             
+Dummy version of ALL_XML_SCHEMAS that does not have an XMLTYPE column           
+NLS parameters of the user session                                              
+NLS parameters of the instance                                                  
+Permanent NLS parameters of the database                                        
+Database compatible parameter set via init.ora                                  
+
+10 rows selected.
+
+
+Table analyzed.
+
+
+VIEW_NAME                                                                       
+--------------------------------------------------------------------------------
+TEXT_VC                                                                         
+--------------------------------------------------------------------------------
+COUNTRY_VIEW                                                                    
+SELECT REGION, POPULATION, AREA FROM COUNTRY                                    
+                                                                                
+
+
+  NUM_ROWS     BLOCKS AVG_ROW_LEN LAST_ANAL DEPENDEN                            
+---------- ---------- ----------- --------- --------                            
+      4063         80         134 04-FEB-18 DISABLED                            
+
+
+INDEX_NAME                                                                      
+--------------------------------------------------------------------------------
+INDEX_TYPE                                                                      
+---------------------------                                                     
+SYS_C0011992                                                                    
+NORMAL                                                                          
+                                                                                
+POPULATION_RANGE                                                                
+NORMAL                                                                          
+                                                                                
+POP_INDEX                                                                       
+NORMAL                                                                          
+                                                                                
+
+
+NUM_DISTINCT  NUM_NULLS    DENSITY                                              
+------------ ---------- ----------                                              
+LOW_VALUE                                                                       
+--------------------------------------------------------------------------------
+HIGH_VALUE                                                                      
+--------------------------------------------------------------------------------
+         179          0 .005586592                                              
+41666768616E697374616E2020202020202020202020202020202020202020202020202020202020
+20202020202020202020                                                            
+5A696D62616277652020202020202020202020202020202020202020202020202020202020202020
+20202020202020202020                                                            
+                                                                                
+          23          0 .043478261                                              
+
+NUM_DISTINCT  NUM_NULLS    DENSITY                                              
+------------ ---------- ----------                                              
+LOW_VALUE                                                                       
+--------------------------------------------------------------------------------
+HIGH_VALUE                                                                      
+--------------------------------------------------------------------------------
+31393839                                                                        
+32303131                                                                        
+                                                                                
+          14          0 .071428571                                              
+41667269636120202020202020202020202020202020202020202020202020202020202020202020
+2020202020202020202020202020202020202020                                        
+576F726C642020202020202020202020202020202020202020202020202020202020202020202020
+
+NUM_DISTINCT  NUM_NULLS    DENSITY                                              
+------------ ---------- ----------                                              
+LOW_VALUE                                                                       
+--------------------------------------------------------------------------------
+HIGH_VALUE                                                                      
+--------------------------------------------------------------------------------
+2020202020202020202020202020202020202020                                        
+                                                                                
+         172          1 .005813953                                              
+C102                                                                            
+C40A623E29                                                                      
+                                                                                
+        3780        104  .00026455                                              
+
+NUM_DISTINCT  NUM_NULLS    DENSITY                                              
+------------ ---------- ----------                                              
+LOW_VALUE                                                                       
+--------------------------------------------------------------------------------
+HIGH_VALUE                                                                      
+--------------------------------------------------------------------------------
+C2064B                                                                          
+C50E2E435128                                                                    
+                                                                                
+         284        462 .003521127                                              
+3F3366                                                                          
+C051                                                                            
+                                                                                
+
+6 rows selected.
+
+
+INDEX_NAME                                                                      
+--------------------------------------------------------------------------------
+TABLE_NAME                                                                      
+--------------------------------------------------------------------------------
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+BIN$ZGilfEFmX9zgU+ogZYCZvg==$0                                                  
+BIN$ZGilfEFpX9zgU+ogZYCZvg==$0                                                  
+AREA                                                                            
+                                                                                
+BIN$ZGilfEFnX9zgU+ogZYCZvg==$0                                                  
+BIN$ZGilfEFpX9zgU+ogZYCZvg==$0                                                  
+POPULATION                                                                      
+
+INDEX_NAME                                                                      
+--------------------------------------------------------------------------------
+TABLE_NAME                                                                      
+--------------------------------------------------------------------------------
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+                                                                                
+BIN$ZGilfEFoX9zgU+ogZYCZvg==$0                                                  
+BIN$ZGilfEFpX9zgU+ogZYCZvg==$0                                                  
+NAME                                                                            
+                                                                                
+BIN$ZGilfEFoX9zgU+ogZYCZvg==$0                                                  
+BIN$ZGilfEFpX9zgU+ogZYCZvg==$0                                                  
+
+INDEX_NAME                                                                      
+--------------------------------------------------------------------------------
+TABLE_NAME                                                                      
+--------------------------------------------------------------------------------
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+YEAR                                                                            
+                                                                                
+BIN$ZGnhMK52aJ7gU+ogZYD4mw==$0                                                  
+BIN$ZGnhMK55aJ7gU+ogZYD4mw==$0                                                  
+AREA                                                                            
+                                                                                
+BIN$ZGnhMK53aJ7gU+ogZYD4mw==$0                                                  
+
+INDEX_NAME                                                                      
+--------------------------------------------------------------------------------
+TABLE_NAME                                                                      
+--------------------------------------------------------------------------------
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+BIN$ZGnhMK55aJ7gU+ogZYD4mw==$0                                                  
+POPULATION                                                                      
+                                                                                
+BIN$ZGnhMK54aJ7gU+ogZYD4mw==$0                                                  
+BIN$ZGnhMK55aJ7gU+ogZYD4mw==$0                                                  
+NAME                                                                            
+                                                                                
+
+INDEX_NAME                                                                      
+--------------------------------------------------------------------------------
+TABLE_NAME                                                                      
+--------------------------------------------------------------------------------
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+BIN$ZGnhMK54aJ7gU+ogZYD4mw==$0                                                  
+BIN$ZGnhMK55aJ7gU+ogZYD4mw==$0                                                  
+YEAR                                                                            
+                                                                                
+BIN$ZGnhMK5xaJ7gU+ogZYD4mw==$0                                                  
+BIN$ZGnhMK50aJ7gU+ogZYD4mw==$0                                                  
+AREA                                                                            
+
+INDEX_NAME                                                                      
+--------------------------------------------------------------------------------
+TABLE_NAME                                                                      
+--------------------------------------------------------------------------------
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+                                                                                
+BIN$ZGnhMK5yaJ7gU+ogZYD4mw==$0                                                  
+BIN$ZGnhMK50aJ7gU+ogZYD4mw==$0                                                  
+POPULATION                                                                      
+                                                                                
+
+10 rows selected.
+
+
+INDEX_NAME                                                                      
+--------------------------------------------------------------------------------
+SYS_C0011992                                                                    
+POPULATION_RANGE                                                                
+POP_INDEX                                                                       
+
+
+TABLE_NAME                                                                      
+--------------------------------------------------------------------------------
+TABLE_TYPE                                                                      
+-----------                                                                     
+BIN$ZGilfEFpX9zgU+ogZYCZvg==$0                                                  
+TABLE                                                                           
+                                                                                
+BIN$ZGnhMK50aJ7gU+ogZYD4mw==$0                                                  
+TABLE                                                                           
+                                                                                
+COUNTRY_VIEW                                                                    
+VIEW                                                                            
+                                                                                
+
+TABLE_NAME                                                                      
+--------------------------------------------------------------------------------
+TABLE_TYPE                                                                      
+-----------                                                                     
+BIN$ZGnhMK55aJ7gU+ogZYD4mw==$0                                                  
+TABLE                                                                           
+                                                                                
+BIN$ZGnvfEx6bNzgU+ogZYB7lg==$0                                                  
+TABLE                                                                           
+                                                                                
+BIN$ZGnvfEyBbNzgU+ogZYB7lg==$0                                                  
+TABLE                                                                           
+                                                                                
+
+TABLE_NAME                                                                      
+--------------------------------------------------------------------------------
+TABLE_TYPE                                                                      
+-----------                                                                     
+BIN$ZGnvfEyIbNzgU+ogZYB7lg==$0                                                  
+TABLE                                                                           
+                                                                                
+COUNTRY                                                                         
+TABLE                                                                           
+                                                                                
+
+8 rows selected.
+
+
+LEAF_BLOCKS                                                                     
+-----------                                                                     
+INDEX_NAME                                                                      
+--------------------------------------------------------------------------------
+INDEX_TYPE                  CLUSTERING_FACTOR                                   
+--------------------------- -----------------                                   
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+          9                                                                     
+POPULATION_RANGE                                                                
+NORMAL                                    256                                   
+AREA                                                                            
+                                                                                
+
+LEAF_BLOCKS                                                                     
+-----------                                                                     
+INDEX_NAME                                                                      
+--------------------------------------------------------------------------------
+INDEX_TYPE                  CLUSTERING_FACTOR                                   
+--------------------------- -----------------                                   
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+         10                                                                     
+POP_INDEX                                                                       
+NORMAL                                   3137                                   
+POPULATION                                                                      
+                                                                                
+
+LEAF_BLOCKS                                                                     
+-----------                                                                     
+INDEX_NAME                                                                      
+--------------------------------------------------------------------------------
+INDEX_TYPE                  CLUSTERING_FACTOR                                   
+--------------------------- -----------------                                   
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+         35                                                                     
+SYS_C0011992                                                                    
+NORMAL                                     84                                   
+NAME                                                                            
+                                                                                
+
+LEAF_BLOCKS                                                                     
+-----------                                                                     
+INDEX_NAME                                                                      
+--------------------------------------------------------------------------------
+INDEX_TYPE                  CLUSTERING_FACTOR                                   
+--------------------------- -----------------                                   
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+         35                                                                     
+SYS_C0011992                                                                    
+NORMAL                                     84                                   
+YEAR                                                                            
+                                                                                
+
+
+VIEW_NAME                                                                       
+--------------------------------------------------------------------------------
+TEXT                                                                            
+--------------------------------------------------------------------------------
+COUNTRY_VIEW                                                                    
+SELECT REGION, POPULATION, AREA FROM COUNTRY                                    
+                                                                                
+
+
+Table altered.
+
+
+Table altered.
+
+
+CONSTRAINT_NAME                                                                 
+--------------------------------------------------------------------------------
+C                                                                               
+-                                                                               
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+SYS_C0011992                                                                    
+P                                                                               
+NAME                                                                            
+                                                                                
+SYS_C0011992                                                                    
+P                                                                               
+YEAR                                                                            
+
+CONSTRAINT_NAME                                                                 
+--------------------------------------------------------------------------------
+C                                                                               
+-                                                                               
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+                                                                                
+SYS_C0011993                                                                    
+C                                                                               
+AREA                                                                            
+                                                                                
+CHK_AREA1                                                                       
+C                                                                               
+
+CONSTRAINT_NAME                                                                 
+--------------------------------------------------------------------------------
+C                                                                               
+-                                                                               
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+AREA                                                                            
+                                                                                
+
+
+TABLE_NAME                                                                      
+--------------------------------------------------------------------------------
+PRIVILEGE                                                                       
+----------------------------------------                                        
+ORDDCM_CONFORMANCE_VLD_MSGS                                                     
+DELETE                                                                          
+                                                                                
+ORDDCM_DOCUMENTS                                                                
+READ                                                                            
+                                                                                
+ORDDCM_DOCUMENT_TYPES                                                           
+READ                                                                            
+                                                                                
+
+TABLE_NAME                                                                      
+--------------------------------------------------------------------------------
+PRIVILEGE                                                                       
+----------------------------------------                                        
+ORDDCM_CONSTRAINT_NAMES                                                         
+READ                                                                            
+                                                                                
+ORDDCM_DBRELEASE_DOCS                                                           
+READ                                                                            
+                                                                                
+ORDDCM_CONFORMANCE_VLD_MSGS                                                     
+READ                                                                            
+                                                                                
+
+6 rows selected.
+
+SQL> SPOOL OFF

@@ -86,7 +86,7 @@
 --1)
   --1.
       SELECT TABLE_NAME , TABLESPACE_NAME, STATUS FROM USER_TABLES FETCH FIRST 10 ROWS ONLY;
---Written answer: Table spaces can have more than one table but a table can only be a part of one tablespace.
+--Written answer: Table spaces can have more than one table but a table can only be a part of one tablespace. 
   --2.
       SELECT COMMENTS FROM ALL_TAB_COMMENTS WHERE COMMENTS IS NOT NULL FETCH FIRST 10 ROWS ONLY;
   --3.
