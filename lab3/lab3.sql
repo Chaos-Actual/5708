@@ -291,7 +291,7 @@ SELECT TITLE FROM MOVIE WHERE TITLE LIKE 'K%';
 
 
 --Part G:
-
+/*
 1: Oracles CCT is not conservative;
 2. oracle cct is strict;
 3. Oracle obeys 2-phase locking.
@@ -300,6 +300,24 @@ SELECT TITLE FROM MOVIE WHERE TITLE LIKE 'K%';
 6. Oracle's CCT cannot lead to a livelock.
 7. Oracle's cct default isolation level read committed does not allow dirty reads this means that it is not possible for a cascading rollback. It is possible to set the isolation level to read uncommitted which does allow for dirty reads. In this case it would be possible for oracle to have a cascading rollback.
 8. Oracle's cct default isolation level read committed is recoverable. It is possible to set the isolation level to read uncommitted which would allow, dirty reads, and consequently allow schedules to become unrecoverable. 
+*/
 
+--Part H:
+/*
+hive> show databases;
+OK
+default
+Time taken: 5.37 seconds, Fetched: 1 row(s)
+hive> show tables;
+OK
+Time taken: 0.027 seconds
+hive> create table employee (id string, name string, dept string) row format delimited fields terminated by
+'\t' stored as textfile;
+OK
+Time taken: 0.822 seconds
+hive> show tables;
+OK
+employee
+Time taken: 0.072 seconds, Fetched: 1 row(s)
 
-
+*/
