@@ -1,3 +1,12 @@
+/******************************
+*     Lab 3                   *
+*     Group:  G8              *
+*     Member: Mark McGuire    *
+*     X500:   mcgu0156        *
+*     Member: Yadu Kiran013   *
+*     X500:   Kiran03         *
+******************************/
+
 --Part A
 --1 
 Set AUTOCOMMIT OFF;
