@@ -205,16 +205,30 @@ Milwaukee
 Chicago
 */
 
+--6
+SELECT SDO_GEOM.SDO_DISTANCE(C1.location, C2.location, 0.5)
+FROM city C1, city C2
+WHERE C1.CITY_NAME = 'Madison' AND C2.CITY_NAME = 'Minneapolis';
 
+--OUTPUT
+/*
 
+SDO_GEOM.SDO_DISTANCE(C1.LOCATION,C2.LOCATION,0.5)
+--------------------------------------------------
+                                        4.32680234
+*/
 
+--7
 
+SELECT C2.CITY_NAME, SDO_GEOM.SDO_DISTANCE(C1.location, C2.location, 0.5) AS DISTANCE
+FROM city C1, city C2
+WHERE C1.CITY_NAME = 'Chicago' AND  SDO_GEOM.SDO_DISTANCE(C1.location, C2.location, 0.5) = (SELECT MAX(SDO_GEOM.SDO_DISTANCE(C1.location, C3.location, 0.5)) FROM CITY C3);
 
+--OUTPUT
+/*
 
+CITY_NAME                                                                DISTANCE
+---------------------------------------------------------------------- ----------
+Bismarck                                                               14.0515968
 
-DECLARE CITY_SET CITY_DESC : = CITY_DESC ();
-BEGIN
-  FOR REC IN (SELECT * FROM MYCITY)
-  LOOP
-    CITY_SET.EXTEND;
-    CITY_SET(CITY_SET.COUNT) :=
+*/
