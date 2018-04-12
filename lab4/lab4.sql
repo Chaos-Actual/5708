@@ -232,3 +232,197 @@ CITY_NAME                                                                DISTANC
 Bismarck                                                               14.0515968
 
 */
+
+
+--Part C
+--1
+-- Account Class
+CREATE OR REPLACE TYPE account AS OBJECT(
+   accountNumber NUMBER,
+   balance NUMBER,
+   MEMBER FUNCTION getAccountNumber RETURN NUMBER,
+   MEMBER FUNCTION getBalance RETURN NUMBER,
+   MEMBER PROCEDURE setAccountNumber(newAccountNumber NUMBER),
+   MEMBER PROCEDURE setBalance(newBalance NUMBER),
+   MEMBER PROCEDURE printAccountInfo
+) NOT FINAL NOT INSTANTIABLE;
+/
+SHOW ERRORS;
+
+-- Account Implementation
+CREATE OR REPLACE TYPE BODY account AS
+   -- accessors for accountNumber and balance coordinates
+   MEMBER FUNCTION getAccountNumber RETURN NUMBER AS
+   BEGIN
+      RETURN accountNumber;
+   END;
+   MEMBER FUNCTION getBalance RETURN NUMBER AS
+   BEGIN
+      RETURN balance;
+   END;
+   MEMBER PROCEDURE setAccountNumber(newAccountNumber NUMBER) AS
+   BEGIN
+      accountNumber := newAccountNumber;
+   END;
+   MEMBER PROCEDURE setBalance(newBalance NUMBER) AS
+   BEGIN
+      balance := newBalance;
+   END;
+
+   -- abstract printAccountInfo method
+   MEMBER PROCEDURE printAccountInfo AS
+   BEGIN
+      NULL;
+   END;
+END;
+/
+SHOW ERRORS;
+
+--2
+-- Checking Account Class
+CREATE OR REPLACE TYPE checkingaccount UNDER account(
+   rewardPoints NUMBER,
+   CONSTRUCTOR FUNCTION checkingaccount(accountNumber NUMBER, balance NUMBER, rewardPoints NUMBER)
+      RETURN SELF AS RESULT,
+   MEMBER FUNCTION getRewardPoints RETURN NUMBER,
+   MEMBER PROCEDURE setRewardPoints(newRewardPoints NUMBER),
+   OVERRIDING MEMBER PROCEDURE printAccountInfo
+);
+/
+SHOW ERRORS;
+
+-- Checking Account Implementation
+CREATE OR REPLACE TYPE BODY checkingaccount AS
+   -- constructor
+   CONSTRUCTOR FUNCTION checkingaccount(accountNumber NUMBER, balance NUMBER, rewardPoints NUMBER)
+      RETURN SELF AS RESULT AS
+   BEGIN
+      SELF.setAccountNumber(accountNumber);
+	  SELF.setBalance(balance);
+      setRewardPoints(rewardPoints);
+      RETURN;
+   END;
+
+   -- accessors for reward points
+   MEMBER FUNCTION getRewardPoints RETURN NUMBER AS
+   BEGIN
+      RETURN rewardPoints;
+   END;
+   MEMBER PROCEDURE setRewardPoints(newRewardPoints NUMBER) AS
+   BEGIN
+      rewardPoints := newRewardPoints;
+   END;
+
+   -- print the account info
+   OVERRIDING MEMBER PROCEDURE printAccountInfo AS
+   BEGIN
+      DBMS_OUTPUT.PUT_LINE('Account Number: ' || SELF.getAccountNumber() || ', Balance: ' || SELF.getBalance() ||
+         ', Reward Points: ' || getRewardPoints());
+   END;
+END;
+/
+SHOW ERRORS;
+
+
+--3
+-- Savings Account Class
+CREATE OR REPLACE TYPE savingsaccount UNDER account(
+   interestEarned NUMBER,
+   numberOfWithdrawals NUMBER,
+   CONSTRUCTOR FUNCTION savingsaccount(accountNumber NUMBER, balance NUMBER, interestEarned NUMBER, numberOfWithdrawals NUMBER)
+      RETURN SELF AS RESULT,
+   MEMBER FUNCTION getInterestEarned RETURN NUMBER,
+   MEMBER FUNCTION getNumberOfWithdrawals RETURN NUMBER,
+   MEMBER PROCEDURE setInterestEarned(newInterestEarned NUMBER),
+   MEMBER PROCEDURE setNumberOfWithdrawals(newNumberOfWithdrawals NUMBER),
+   OVERRIDING MEMBER PROCEDURE printAccountInfo
+);
+/
+SHOW ERRORS;
+-- Savings Account Implementation
+CREATE OR REPLACE TYPE BODY savingsaccount AS
+   -- constructor
+   CONSTRUCTOR FUNCTION savingsaccount(accountNumber NUMBER, balance NUMBER, interestEarned NUMBER, numberOfWithdrawals NUMBER)
+      RETURN SELF AS RESULT AS
+   BEGIN
+      SELF.setAccountNumber(accountNumber);
+	  SELF.setBalance(balance);
+      setInterestEarned(interestEarned);
+	  setNumberOfWithdrawals(numberOfWithdrawals);
+      RETURN;
+   END;
+
+   -- accessors for interestEarned and numberOfWithdrawals
+   MEMBER FUNCTION getInterestEarned RETURN NUMBER AS
+   BEGIN
+      RETURN interestEarned;
+   END;
+   MEMBER FUNCTION getNumberOfWithdrawals RETURN NUMBER AS
+   BEGIN
+      RETURN numberOfWithdrawals ;
+   END;
+   MEMBER PROCEDURE setInterestEarned (newInterestEarned NUMBER) AS
+   BEGIN
+      interestEarned := newInterestEarned;
+   END;
+   MEMBER PROCEDURE setNumberOfWithdrawals (newNumberOfWithdrawals NUMBER) AS
+   BEGIN
+      numberOfWithdrawals := newNumberOfWithdrawals;
+   END;
+
+   -- print the account info
+   OVERRIDING MEMBER PROCEDURE printAccountInfo AS
+   BEGIN
+      DBMS_OUTPUT.PUT_LINE('Account Number: ' || SELF.getAccountNumber() || ', Balance: ' || SELF.getBalance() ||
+         ', Interest Earned: ' || getInterestEarned() || ', Number of Withdrawals: ' || getNumberOfWithdrawals());
+   END;
+END;
+/
+SHOW ERRORS;
+
+
+--4
+SET SERVEROUTPUT ON;
+
+-- Driver
+DECLARE
+   TYPE accounts IS TABLE OF account;
+   scribble accounts;
+   i PLS_INTEGER;
+BEGIN
+   -- create some account instances
+   scribble := accounts(checkingaccount(1, 200, 500), savingsaccount(2, 350, 10, 10));
+
+   -- iterate through the list and print accounts polymorphically
+   FOR i IN scribble.FIRST..scribble.LAST LOOP
+      scribble(i).printAccountInfo();
+   END LOOP;
+END;
+/
+SHOW ERRORS;
+
+--OUTPUT
+/*
+Account Number: 1, Balance: 200, Reward Points: 500
+Account Number: 2, Balance: 350, Interest Earned: 10, Number of Withdrawals: 10
+
+PL/SQL procedure successfully completed.
+*/
+
+--5
+--TODO: complete this step
+--TODO: complete this step
+--TODO: complete this step
+--TODO: complete this step
+--TODO: complete this step
+--TODO: complete this step
+--TODO: complete this step --TODO: complete this step
+--TODO: complete this step
+--TODO: complete this step
+--TODO: complete this step
+--TODO: complete this step
+
+
+
+
+--Part D
