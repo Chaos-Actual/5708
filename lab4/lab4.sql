@@ -413,28 +413,36 @@ PL/SQL procedure successfully completed.
 /*Polymorphism is supported. There is an object account class that is a super class. This has a procedural function that is printAccountInfo. This is set to null and is an abstract class. This allows for the child classes to implement their own versions of the printAccountInfo.  In step 4, printAccountInfo is called from both the checking account class and from the savings account class within the same procedure. The output of the call depends on the object it being called on.  At compile time there is no way to determine how the printAccountInfo will behave so it is done at runtime based on the object that is calling it.
 */
 
+
 --Part D
+module load math/matlab
+activitySet = csvread('Downloads/kmeans_data1.csv')
+scatter(activitySet(:,1),activitySet(:,2))
+--1
+/*In the scatter.jpeg there are three distinct clusters. One small dense cluster and then two larger less dense clusters. */
+--2
+/*The k-means does not follow the clusters. This is unexpected becuase the cluseters are clear to see with the human eye.
+One of the clusters has three of the k-means while the other two clusters have just one of the k-means.
+This is most likly due to the starting poistions of the k-means. */
+
+activitySet = csvread('Downloads/kmeans_data2.csv')
+--1
+/*There are two dense clusters with two large clusters that are sparesly filled.
+These large clusters with a few points in them are the outliers because most
+of the points are in the two small clusters. */
+
+--2
+/* The outilers impact the results significantly. It would be expected that there would be two kmeans one for each of the dense clusters.
+This is not the case. The outliers fool kmeans. One of the outlier clusters get one of the kmeans
+while both of the dense clusters get the other kmean group. */
+
+activitySet = csvread('Downloads/kmeans_dataset3.csv')
+--1
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+activitySet = csvread('Downloads/kmeans_data4.csv')
 
 
 
