@@ -410,19 +410,34 @@ PL/SQL procedure successfully completed.
 */
 
 --5
---TODO: complete this step
---TODO: complete this step
---TODO: complete this step
---TODO: complete this step
---TODO: complete this step
---TODO: complete this step
---TODO: complete this step --TODO: complete this step
---TODO: complete this step
---TODO: complete this step
---TODO: complete this step
---TODO: complete this step
-
-
-
+/*Polymorphism is supported. There is an object account class that is a super class. This has a procedural function that is printAccountInfo. This is set to null and is an abstract class. This allows for the child classes to implement their own versions of the printAccountInfo.  In step 4, printAccountInfo is called from both the checking account class and from the savings account class within the same procedure. The output of the call depends on the object it being called on.  At compile time there is no way to determine how the printAccountInfo will behave so it is done at runtime based on the object that is calling it.
+*/
 
 --Part D
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8
