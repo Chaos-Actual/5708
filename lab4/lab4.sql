@@ -1,3 +1,14 @@
+/******************************
+*     Lab 4                   *
+*     Group:  G8              *
+*     Member: Mark McGuire    *
+*     X500:   mcgu0156        *
+*     Member: Yadu Kiran      *
+*     X500:   Kiran013        *
+******************************/
+
+--Admin
+/*
 SET LINESIZE 10000;
 set pagesize 1000;
 
@@ -6,6 +17,8 @@ module load soft/oracle
 sqlplus S18C5708G8@o12g/S18C5708G8
 sqlplus S18C5708G26@o12g/S18C5708G26
 sqlplus S18C5708G27@o12g/S18C5708G27
+*/
+
 
 --Part A
 
@@ -36,13 +49,13 @@ GRANT SELECT ON  MOVIE08VW TO S18C5708G27;
 --2
 CREATE VIEW MOVIE08VW1965 AS SELECT * FROM MOVIE08 WHERE YR = 1965;
 GRANT SELECT ON MOVIE08VW1965 TO PUBLIC;
-
+-- Testing query
 --SELECT * FROM S18C5708G8.MOVIE08VW1965;
 
 
 --3
 GRANT SELECT, DELETE , UPDATE (id, title, yr, votes) ON MOVIE08 TO S18C5708G26;
-/*
+/* Testing queries
 UPDATE S18C5708G8.movie08 SET VOTES = 1 WHERE TITLE = 'Crack in the World';
 SELECT * FROM  S18C5708G8.movie08  WHERE TITLE = 'Crack in the World';
 DELETE FROM S18C5708G8.movie08  WHERE TITLE = 'Crack in the World';
@@ -419,7 +432,7 @@ module load math/matlab
 activitySet = csvread('Downloads/kmeans_data1.csv')
 scatter(activitySet(:,1),activitySet(:,2))
 --1
-/*In the scatter.jpeg there are three distinct clusters. One small dense cluster and then two larger less dense clusters. */
+/*In the scatter1.jpg there are three distinct clusters. One small dense cluster and then two larger less dense clusters. */
 --2
 /*The k-means does not follow the clusters. This is unexpected becuase the cluseters are clear to see with the human eye.
 One of the clusters has three of the k-means while the other two clusters have just one of the k-means.
@@ -427,7 +440,7 @@ This is most likly due to the starting poistions of the k-means. */
 
 activitySet = csvread('Downloads/kmeans_data2.csv')
 --1
-/*There are two dense clusters with two large clusters that are sparesly filled.
+/*There are two dense clusters with two large clusters that are sparesly filled in scatter2.jpg.
 These large clusters with a few points in them are the outliers because most
 of the points are in the two small clusters. */
 
@@ -439,13 +452,4 @@ while both of the dense clusters get the other kmean group. */
 activitySet = csvread('Downloads/kmeans_dataset3.csv')
 --1
 
-
-
-
 activitySet = csvread('Downloads/kmeans_data4.csv')
-
-
-
-
-
-8
