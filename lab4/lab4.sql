@@ -490,8 +490,8 @@ OK
 Time taken: 23.753 seconds, Fetched: 1 row(s)
 */
 
--- Hive ouputs much of the actions it is taking bechind the scenes like the
--- MapReduce and cpu times. Then ouputs the results of the query. Oracle only ouputs results.
+-- Hive outputs much of the actions it is taking behind the scenes like the
+-- MapReduce and cpu times. Then outputs the results of the query. Oracle only outputs results.
 
 
 --Command 3: Find names and area of regions with area more than the total area of region 'Middle East' for 2002.
@@ -540,7 +540,7 @@ Time taken: 22.145 seconds
 /*
 The first command builds an empty index. The second command then fills the index.
 If the underlying data changes then rebuild has to be called again.
-When Oracle is given the create index commmand the index is build and maintained by the DBMS.
+When Oracle is given the create index command the index is build and maintained by the DBMS.
 */
 
 (Further reading(s). Link-1 Link-2)
@@ -574,8 +574,8 @@ Time taken: 0.23 seconds, Fetched: 20 row(s)
 
 /*
 Hive and Oracle both show the steps the query took to retrieve the correct records.
-Hive shows more infromation about the number of rows and data size for each of the operations.
-Hive also shows the data types of the columns being quried.
+Hive shows more information about the number of rows and data size for each of the operations.
+Hive also shows the data types of the columns being queried.
 Oracle shows estimates in its explain plan and shows no information about types.
 */
 
@@ -626,9 +626,9 @@ explain select count(*) from country group by region;
 Time taken: 0.212 seconds, Fetched: 52 row(s)
 */
 
-/* This is very diffenent from the Oracle plan. Oracle's plan would be only about 6 or 7 lines.
+/* This is very different from the Oracle plan. Oracle's plan would be only about 6 or 7 lines.
 Here hive is very through in its explanation of its plan. There are two stages compared to Oracles which does not deal in stages.
-Hive also explaines the map and reduce portion of this plan.
+Hive also explains the map and reduce portion of this plan.
 */
 
 
@@ -647,7 +647,7 @@ Time taken: 0.305 seconds, Fetched: 71 row(s)
 */
 
 /* Similar to command 10, Hive outputs a significant amount of information. This is very different from Oracle which would only have a few lines
-explaining this join. Hive has multipul stages that rely on each other.
+explaining this join. Hive has multiple stages that rely on each other.
 There seems to be a lot of overhead for simple queries. Commands 9, 10, and 11
 used map reduce where Oracle does not have this ability.
 
