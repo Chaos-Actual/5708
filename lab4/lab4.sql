@@ -450,10 +450,25 @@ This is not the case. The outliers fool kmeans. One of the outlier clusters get 
 while both of the dense clusters get the other kmean group. */
 
 activitySet = csvread('Downloads/kmeans_dataset3.csv')
---1
 
 activitySet = csvread('Downloads/kmeans_data4.csv')
 
+/*
+1) Both datasets produce two very distinct clusters when subject to K-means. 
+Although both datasets where subject through iterative K-means where each node was evaluated by computing the distance to the two centroids, 
+we can view the results from the perspective of a human’s intuition. 
+ 
+In both cases, the two clusters are formed based on the X dimension attribute of the nodes.
+If x < 5, then the node is placed into Cluster 1, and if x > 5, then the node is placed into Cluster 2. 
+The nature of the dataset and a intuitive binary decision tree lends itself to intuitive clustering.
+ 
+2) I would argue that Dataset 3 has more representative clustering. 
+As we can observe in the plots, the clustering in Dataset 3 is denser than the clustering in Dataset 4. 
+In other words, the mean distance between all the nodes in each cluster to the centroids, 
+is lower for the clusters in Dataset 3 than that of Dataset 4. 
+However, this is due to the nature of the dataset itself and not because of ineffectiveness of K-means. 
+
+*/
 
 --Part E
 /* The main difference of the hive_country.sql and country.sql is the hive_country file
