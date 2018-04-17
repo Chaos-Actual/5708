@@ -453,3 +453,202 @@ activitySet = csvread('Downloads/kmeans_dataset3.csv')
 --1
 
 activitySet = csvread('Downloads/kmeans_data4.csv')
+
+
+--Part E
+/* The main difference of the hive_country.sql and country.sql is the hive_country file
+  has a "ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';"  at the end of the create table.
+*/
+
+--Run the following commands and observe the output.
+--Note down your observation briefly elaborating the difference from the ORACLE environment.
+--Submit the observations (for each query) with a maximum of 5 rows.
+
+--Command 1: List country names starting with ‘B’ or ‘D’
+ select name from country where name like 'B%' or name like 'D%';
+/* output
+OK
+Bahrain
+Bahrain
+Bahrain
+Bahrain
+Bahrain
+ Time taken: 7.11 seconds, Fetched: 414 row(s)
+ */
+
+ --The main difference here is the fields are not listed at the top of the results.
+
+
+--Command 2: List number of countries with gdp greater than 0.15 for 2005
+select count(*) from country where gdp > 0.15 and year = 2005;
+/* output
+MapReduce Jobs Launched:
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 4.42 sec   HDFS Read: 215136 HDFS Write: 102 SUCCESS
+Total MapReduce CPU Time Spent: 4 seconds 420 msec
+OK
+14
+Time taken: 23.753 seconds, Fetched: 1 row(s)
+*/
+
+-- Hive ouputs much of the actions it is taking bechind the scenes like the
+-- MapReduce and cpu times. Then ouputs the results of the query. Oracle only ouputs results.
+
+
+--Command 3: Find names and area of regions with area more than the total area of region 'Middle East' for 2002.
+select name, area from country where area > (select sum(area) from country where region = 'Middle East' and year = 2002);
+/* OUTPUT
+FAILED: SemanticException Line 0:-1 Unsupported SubQuery Expression '2002': Only SubQuery expressions that are top level conjuncts are allowed
+*/
+-- Hive only supports subqueries that are part of a IN/NOT IN or  EXISTS / NOT EXISTS in the where clause.
+
+--Command 4: Select name of countries that have a record in the year 2001 based on their region.
+select name from country where country.region IN (select region from country_dup where year=2001);
+/* OUTPUT
+Zimbabwe
+Zimbabwe
+Zimbabwe
+Zimbabwe
+Zimbabwe
+Time taken: 34.253 seconds, Fetched: 4094 row(s)
+*/
+--This subquery works because it is part of an IN expression. Hive also outputs what actions it is taking behind the scenes.
+
+--Command 5: Delete the rows with year 2002. (May not work.)
+delete from country where year = 2002;
+--FAILED: SemanticException [Error 10294]: Attempt to do update or delete using transaction manager that does not support these operations.
+
+--Command 6: Determine the area for Belgium. Update area for Belgium to be 35000. (May not work.)
+update country set year = 2002 where region = 'Middle East';
+-- FAILED: SemanticException [Error 10294]: Attempt to do update or delete using transaction manager that does not support these operations.
+
+/* Hive does not support update and delete queries. Hive is a data warehouse used to support batch processing rather than a transactional DBMS. */
+
+--Command 7: Create an index on country table column 'population'
+create index pop on table country (population) AS 'COMPACT' with DEFERRED REBUILD;
+ALTER INDEX pop ON country REBUILD;
+/* output
+OK
+Time taken: 0.452 seconds
+
+MapReduce Jobs Launched:
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 3.94 sec   HDFS Read: 215493 HDFS Write: 321938 SUCCESS
+Total MapReduce CPU Time Spent: 3 seconds 940 msec
+OK
+Time taken: 22.145 seconds
+*/
+
+/*
+The first command builds an empty index. The second command then fills the index.
+If the underlying data changes then rebuild has to be called again.
+When Oracle is given the create index commmand the index is build and maintained by the DBMS.
+*/
+
+(Further reading(s). Link-1 Link-2)
+Run the following query to observe Hive ‘explain’ utility. Note down your observation briefly elaborating the difference from the ORACLE environment
+--Command 8: Point query
+explain select * from country where region = 'Europe';
+/* output
+OK
+STAGE DEPENDENCIES:
+  Stage-0 is a root stage
+
+STAGE PLANS:
+  Stage: Stage-0
+    Fetch Operator
+      limit: -1
+      Processor Tree:
+        TableScan
+          alias: country
+          Statistics: Num rows: 4117 Data size: 201357 Basic stats: COMPLETE Column stats: NONE
+          Filter Operator
+            predicate: (region = 'Europe') (type: boolean)
+            Statistics: Num rows: 2058 Data size: 100654 Basic stats: COMPLETE Column stats: NONE
+            Select Operator
+              expressions: name (type: string), year (type: int), 'Europe' (type: string), area (type: int), population (type: bigint), gdp (type: float)
+              outputColumnNames: _col0, _col1, _col2, _col3, _col4, _col5
+              Statistics: Num rows: 2058 Data size: 100654 Basic stats: COMPLETE Column stats: NONE
+              ListSink
+
+Time taken: 0.23 seconds, Fetched: 20 row(s)
+*/
+
+/*
+Hive and Oracle both show the steps the query took to retrieve the correct records.
+Hive shows more infromation about the number of rows and data size for each of the operations.
+Hive also shows the data types of the columns being quried.
+Oracle shows estimates in its explain plan and shows no information about types.
+*/
+
+--Command 9: Range query
+explain select * from country where population > 1000000 and population < 3000000;
+/* OUTPUT
+OK
+STAGE DEPENDENCIES:
+  Stage-0 is a root stage
+
+STAGE PLANS:
+  Stage: Stage-0
+    Fetch Operator
+      limit: -1
+      Processor Tree:
+        TableScan
+          alias: country
+          Statistics: Num rows: 4117 Data size: 201357 Basic stats: COMPLETE Column stats: NONE
+          Filter Operator
+            predicate: ((population > 1000000) and (population < 3000000)) (type: boolean)
+            Statistics: Num rows: 457 Data size: 22351 Basic stats: COMPLETE Column stats: NONE
+            Select Operator
+              expressions: name (type: string), year (type: int), region (type: string), area (type: int), population (type: bigint), gdp (type: float)
+              outputColumnNames: _col0, _col1, _col2, _col3, _col4, _col5
+              Statistics: Num rows: 457 Data size: 22351 Basic stats: COMPLETE Column stats: NONE
+              ListSink
+
+Time taken: 0.123 seconds, Fetched: 20 row(s)
+*/
+
+/* Hive clearly shows the predicate of the range query. Oracle does not do this.
+Oracle seems to be more specific in the types of operations used to retrieve the records.
+*/
+
+
+--Command 10: Aggregate query
+explain select count(*) from country group by region;
+/* output
+.
+.
+.
+  Stage: Stage-0
+    Fetch Operator
+      limit: -1
+      Processor Tree:
+        ListSink
+
+Time taken: 0.212 seconds, Fetched: 52 row(s)
+*/
+
+/* This is very diffenent from the Oracle plan. Oracle's plan would be only about 6 or 7 lines.
+Here hive is very through in its explanation of its plan. There are two stages compared to Oracles which does not deal in stages.
+Hive also explaines the map and reduce portion of this plan.
+*/
+
+
+
+--Command 11: Join query
+explain select name from country where country.region IN (select region from country_dup where year=2001);
+
+/*Output
+Stage: Stage-0
+  Fetch Operator
+    limit: -1
+    Processor Tree:
+      ListSink
+
+Time taken: 0.305 seconds, Fetched: 71 row(s)
+*/
+
+/* Similar to command 10, Hive outputs a significant amount of information. This is very different from Oracle which would only have a few lines
+explaining this join. Hive has multipul stages that rely on each other.
+There seems to be a lot of overhead for simple queries. Commands 9, 10, and 11
+used map reduce where Oracle does not have this ability.
+
+*/
